@@ -2,13 +2,13 @@ require 'test_helper'
 
 class PhysiciansControllerTest < ActionController::TestCase
   setup do
-    @physician = physicians(:one)
+    @clinic = clinics(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:physicians)
+    assert_not_nil assigns(:clinics)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class PhysiciansControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create physician" do
+  test "should create clinic" do
     assert_difference('Physician.count') do
-      post :create, physician: {  }
+      post :create, clinic: {  }
     end
 
-    assert_redirected_to physician_path(assigns(:physician))
+    assert_redirected_to clinic_path(assigns(:clinic))
   end
 
-  test "should show physician" do
-    get :show, id: @physician
+  test "should show clinic" do
+    get :show, id: @clinic
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @physician
+    get :edit, id: @clinic
     assert_response :success
   end
 
-  test "should update physician" do
-    put :update, id: @physician, physician: {  }
-    assert_redirected_to physician_path(assigns(:physician))
+  test "should update clinic" do
+    put :update, id: @clinic, clinic: {  }
+    assert_redirected_to clinic_path(assigns(:clinic))
   end
 
-  test "should destroy physician" do
+  test "should destroy clinic" do
     assert_difference('Physician.count', -1) do
-      delete :destroy, id: @physician
+      delete :destroy, id: @clinic
     end
 
-    assert_redirected_to physicians_path
+    assert_redirected_to clinics_path
   end
 end

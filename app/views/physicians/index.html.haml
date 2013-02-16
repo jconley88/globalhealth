@@ -1,7 +1,0 @@
-%h1 Listing physicians
-
-.row
-- @physicians.each do |physician|
-  %td= link_to 'Show', physician
-  %td= link_to 'Edit', edit_physician_path(physician)
-  %td= link_to 'Destroy', physician, method: :delete, data: { confirm: 'Are you sure?' }

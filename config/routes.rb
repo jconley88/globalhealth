@@ -1,5 +1,5 @@
 Globalhealth::Application.routes.draw do
-  resources :physicians do
+  resources :clinics do
     collection do
       get :search
     end
@@ -55,7 +55,7 @@ Globalhealth::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'physicians#search'
+  root :to => 'clinics#search'
 
   # See how all your routes lay out with "rake routes"
 
