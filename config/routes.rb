@@ -1,9 +1,6 @@
 Globalhealth::Application.routes.draw do
-  resources :clinics do
-    collection do
-      post :search
-    end
-  end
+  match '/' => "clinics#index",  :via => :get
+  match '/search' => "clinics#search",  :via => :post
 
 
   # The priority is based upon order of creation:
@@ -55,7 +52,7 @@ Globalhealth::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'clinics#search'
+  root :to => 'clinics#index'
 
   # See how all your routes lay out with "rake routes"
 
