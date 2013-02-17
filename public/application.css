@@ -74,3 +74,13 @@ body {
   background: #107443;
   font-family: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
 }
+.footer {
+  font-size: 12px;
+  padding-top: 4px;
+  background: #107443;
+  text-align: center;
+  color: #ccc;
+}
+.footer a {
+  color: #ccc;
+}
