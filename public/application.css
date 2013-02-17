@@ -35,6 +35,10 @@ ul.results {
   border-radius: 2px;
   padding: 0px 16px 16px 16px;
   margin: 12px 8px;
+  min-height: 200px;
+}
+.content li h2 {
+  width: 80%;
 }
 .content li .ranking {
   position: absolute;
@@ -53,7 +57,8 @@ ul.results {
   text-align: center;
 }
 .content li .ranking .bar {
-  background: #f6f6f6;
+  background: #fff;
+  border: 1px solid #999;
 }
 .content li dl dt {
   width: 80px;
