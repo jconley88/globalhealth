@@ -1,2 +1,2 @@
-module PhysiciansHelper
+module ClinicsHelper
 end
