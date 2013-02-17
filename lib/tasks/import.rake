@@ -4,14 +4,14 @@ task :import => :environment do
   #---import services---
   services = {}
   services_seeds = [
-    {:code => 'DEGS', :name => 'Donor Egg Services'},
-    {:code => 'GS', :name => 'Gestational Surrogate'},
-    {:code => 'DEMS', :name => 'Donor Embryo Services'},
-    {:code => 'C', :name => 'Cryopreservation'},
-    {:code => 'SW', :name => 'Services for Single Women'},
-    {:code => 'AAL', :name => 'ACS Accredited Laboratory'},
-    {:code => 'IS', :name => 'ICSI Services'},
-    {:code => 'PGD', :name => 'Preimplantation Genetic Diagnosis'}
+    {:code => 'degs', :name => 'Donor Egg Services'},
+    {:code => 'gs', :name => 'Gestational Surrogate'},
+    {:code => 'dems', :name => 'Donor Embryo Services'},
+    {:code => 'c', :name => 'Cryopreservation'},
+    {:code => 'sw', :name => 'Services for Single Women'},
+    {:code => 'aal', :name => 'ACS Accredited Laboratory'},
+    {:code => 'is', :name => 'ICSI Services'},
+    {:code => 'pgd', :name => 'Preimplantation Genetic Diagnosis'}
   ]
 
   services_seeds.each do |s|
@@ -35,14 +35,14 @@ task :import => :environment do
   #---import complications---
   complications = {}
   complications_seeds = [
-    {:code => 'TF', :name => 'Tubal Factor'},
-    {:code => 'OD', :name => 'Ovulatory Dysfunction'},
-    {:code => 'DOR', :name => 'Diminished Ovarian Reserve'},
-    {:code => 'E', :name => 'Endometriosis'},
-    {:code => 'UF', :name => 'Uterine Factor'},
-    {:code => 'MF', :name => 'Male Factor'},
-    {:code => 'MFF', :name => 'Male and Female Factor'},
-    {:code => 'FGD', :name => 'Familial Genetic Disease'}
+    {:code => 'tf', :name => 'tubal factor'},
+    {:code => 'od', :name => 'ovulatory dysfunction'},
+    {:code => 'dor', :name => 'diminished ovarian reserve'},
+    {:code => 'e', :name => 'endometriosis'},
+    {:code => 'uf', :name => 'uterine factor'},
+    {:code => 'mf', :name => 'male factor'},
+    {:code => 'mff', :name => 'male and female factor'},
+    {:code => 'fgd', :name => 'Familial Genetic Disease'}
   ]
 
   complications_seeds.each do |c|
@@ -53,14 +53,14 @@ task :import => :environment do
   #---Link Complications with Required Services---
   #raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
   #complications['OD'].services << services['']
-  complications['DOR'].services << services['DEGS']
-  complications['DOR'].services << services['DEMS']
-  complications['UF'].services << services['GS']
-  complications['MF'].services << services['IS']
-  complications['FGD'].services << services['PGD']
-  complications['MFF'].services << services['IS']
-  complications['TF'].services = Service.all
-  complications['E'].services = Service.all
+  complications['dor'].services << services['degs']
+  complications['dor'].services << services['dems']
+  complications['uf'].services << services['gs']
+  complications['mf'].services << services['is']
+  complications['fgd'].services << services['pgd']
+  complications['mff'].services << services['is']
+  complications['tf'].services = Service.all
+  complications['e'].services = Service.all
 
   complications.each do |key, complication|
     complication.save!
@@ -89,14 +89,14 @@ task :import => :environment do
     clinics[row[:clinic_id]] = clinic
 
     service_codes = [
-      :DEGS,
-      :GS,
-      :DEMS,
-      :C,
-      :SW,
-      :AAL,
-      :IS,
-      :PGD
+      :degs,
+      :gs,
+      :dems,
+      :c,
+      :sw,
+      :aal,
+      :is,
+      :pgd
     ]
     service_codes.each do |code|
       if row[code].to_s == '1'
