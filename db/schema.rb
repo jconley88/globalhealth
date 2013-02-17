@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130217143651) do
   create_table "stat_names", :force => true do |t|
     t.string   "code"
     t.string   "name"
+    t.string   "price"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
