@@ -15,7 +15,7 @@ class Clinic < ActiveRecord::Base
   end
 
   def price
-    (0.5 * @quality) *(rand * (50000) + 50000).round(-3)
+    (0.5 * quality) * (rand * (50000) + 50000).round(-3)
   end
   alias_method :distance, :distance_in_miles
 end
