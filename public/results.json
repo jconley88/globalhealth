@@ -1,0 +1,16 @@
+[{
+    "name": "Some Clinic",
+    "address": "123 Fake St, Philadelphia PA 19147",
+    "phone": "215-555-1212",
+    "email": "someone@someclinic.com",
+    "quality": 60,
+    "url": "http://www.someclinic.com"
+},
+{
+    "name": "Some Other Clinic",
+    "address": "123 Fake St, Philadelphia PA 19147",
+    "phone": "215-555-1212",
+    "email": "someone@someclinic.com",
+    "quality": 77,
+    "url": "http://someotherclinic.com"
+}]
