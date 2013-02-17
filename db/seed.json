@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "Jon Conley",
+    "street1": '123 Street Rd',
+    "street2": "",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone": "215-123-1234",
+    "email": "clinic@clinic.com",
+    "zip": "19102",
+    "live_birth_rate": 0.27
+  },{
+    "id": "2",
+    "name": "Nouras Haddad",
+    "street1": '123 Road St',
+    "street2": "",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone": "215-123-1234",
+    "email": "clinic@clinic.com",
+    "zip": "19102",
+    "live_birth_rate": 0.33
+  },{
+    "id": "3",
+    "name": "Alex Cameron",
+    "street1": '123 Street Rd',
+    "street2": "",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone": "215-123-1234",
+    "email": "clinic@clinic.com",
+    "zip": "19102",
+    "live_birth_rate": 0.37
+  },{
+    "id": "4",
+    "name": "Graham Smith",
+    "street1": '123 Street Rd',
+    "street2": "",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone": "215-123-1234",
+    "email": "clinic@clinic.com",
+    "zip": "19102",
+    "live_birth_rate": 0.22
+  }
+]
