@@ -71,6 +71,7 @@ task :import => :environment do
   filename = File.join(Rails.root, 'db/seeds/clinics.csv')
   CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
     clinic = Clinic.create!({
+        :clinic_id => row[:clinic_id],
         :name => row[:clinic_name],
         :address => row[:address],
         :city => row[:city],

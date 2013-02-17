@@ -1,6 +1,8 @@
 class CreateClinicsTable < ActiveRecord::Migration
   def up
     create_table :clinics do |t|
+      t.integer :clinic_id
+      t.string :price
       t.string :name
       t.string :address
       t.string :city
