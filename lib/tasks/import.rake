@@ -3,7 +3,6 @@ task :import_clinics => :environment do
   require 'csv'
   require 'pp'
   #---import services---
-  services = {}
   services_seeds = [
     {:code => 'donor_egg', :name => 'Donor Egg Services'},
     {:code => 'gest_carrier', :name => 'Surrogate Services'},
@@ -16,8 +15,20 @@ task :import_clinics => :environment do
   ]
 
   services_seeds.each do |s|
-    service = Service.create s
-    services[service.id] = service
+    Service.create s
+  end
+
+  #---import ages---
+  ages_seeds = [
+    {:code => '35', :name => '<35', :min => 0, :max => 34},
+    {:code => '37', :name => '35-37', :min => 35, :max => 37},
+    {:code => '40', :name => '38-40', :min => 38, :max => 40},
+    {:code => '42', :name => '41-42', :min => 41, :max => 42},
+    {:code => '44', :name => '43-44', :min => 43, :max => 44},
+  ]
+
+  ages_seeds.each do |a|
+    Age.create a
   end
 
    #---import clinics---
