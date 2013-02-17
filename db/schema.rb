@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20130217001637) do
   end
 
   create_table "clinics", :force => true do |t|
+    t.integer  "clinic_id"
+    t.string   "price"
     t.string   "name"
     t.string   "address"
     t.string   "city"

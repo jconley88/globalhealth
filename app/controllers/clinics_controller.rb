@@ -7,7 +7,8 @@ class ClinicsController < ApplicationController
   # GET /Clinics.json
   def index
     zip = params[:zip_code]
-    @clinics = Clinic.all
+    complication = Complication.find_by_code(params[:complication_code])
+    @clinics = complication.clinics
 
     respond_to do |format|
       format.html # index.html.erb
