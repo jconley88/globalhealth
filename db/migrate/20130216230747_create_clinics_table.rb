@@ -16,6 +16,9 @@ class CreateClinicsTable < ActiveRecord::Migration
       t.string :fax
       t.string :email
       t.string :link
+      t.integer :donor_transfers
+      t.string :donor_births
+      t.string :donor_rank
       t.integer :quality
       t.timestamps
     end

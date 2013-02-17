@@ -35,13 +35,13 @@ task :import => :environment do
   #---import complications---
   complications = {}
   complications_seeds = [
-    {:code => 'tf', :name => 'tubal factor'},
-    {:code => 'od', :name => 'ovulatory dysfunction'},
-    {:code => 'dor', :name => 'diminished ovarian reserve'},
-    {:code => 'e', :name => 'endometriosis'},
-    {:code => 'uf', :name => 'uterine factor'},
-    {:code => 'mf', :name => 'male factor'},
-    {:code => 'mff', :name => 'male and female factor'},
+    {:code => 'tf', :name => 'Tubal Factor'},
+    {:code => 'od', :name => 'Ovulatory Dysfunction'},
+    {:code => 'dor', :name => 'Diminished Ovarian Reserve'},
+    {:code => 'e', :name => 'Endometriosis'},
+    {:code => 'uf', :name => 'Uterine Factor'},
+    {:code => 'mf', :name => 'Male Factor'},
+    {:code => 'mff', :name => 'Male and Female Factor'},
     {:code => 'fgd', :name => 'Familial Genetic Disease'}
   ]
 
@@ -66,7 +66,7 @@ task :import => :environment do
     complication.save!
   end
 
-   #---import clinics---
+  #---import clinics---
   clinics = {}
   filename = File.join(Rails.root, 'db/seeds/clinics.csv')
   CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
@@ -105,5 +105,58 @@ task :import => :environment do
     end
 
     clinic.save
+  end
+
+  #---import egg types---
+  egg_types_seeds = [
+    {:code => 'frozen', :name => 'Frozen Egg'},
+    {:code => 'donor', :name => 'Fresh Egg'},
+    {:code => 'fresh', :name => 'Donor Egg'}
+  ]
+
+  egg_types_seeds.each do |e|
+    EggType.create! e
+  end
+
+  #---import stat names---
+  stat_names_seeds = [
+    {:code => 'totcycles', :name => 'Total IVF Cycles'},
+    {:code => 'preg', :name => 'Pregnancy Rate'},
+    {:code => 'birth', :name => 'Birth Rate'},
+    {:code => 'rank', :name => 'Rank'}
+  ]
+
+  stat_names_seeds.each do |s|
+    StatName.create! s
+  end
+
+   #---import stats---
+  stats = {}
+  filename = File.join(Rails.root, 'db/seeds/stats.csv')
+  CSV.foreach(filename, :headers => true) do |row|
+    ages = [35, 37, 40, 42, 44]
+    egg_types = ['frozen', 'fresh', 'donor']
+    stats = ['totcycles', 'preg', 'birth', 'rank']
+    clinic = Clinic.find_by_clinic_id(row['clinic_id'].to_i)
+    clinic.update_attributes({
+                              :donor_transfers => row['donor_transfers'].to_i,
+                              :donor_births => row['donor_births'],
+                              :donor_rank => row['donor_rank']
+                             })
+
+    ages.each do |age|
+      egg_types.each do |egg_type|
+        stats.each do |stat|
+          header = [age, egg_type, stat].join('_')
+          Stat.create!(
+              :age_id => Age.find_by_code(age).id,
+              :egg_type_id => EggType.find_by_code(egg_type).id,
+              :clinic_id => clinic.id,
+              :stat_name_id => StatName.find_by_code(stat).id,
+              :value => row[header]
+          )
+        end
+      end
+    end
   end
 end

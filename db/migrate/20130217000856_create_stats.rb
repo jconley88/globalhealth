@@ -4,6 +4,7 @@ class CreateStats < ActiveRecord::Migration
       t.integer :clinic_id
       t.integer :age_id
       t.integer :egg_type_id
+      t.integer :stat_name_id
       t.string :value
       t.timestamps
     end

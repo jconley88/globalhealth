@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130217001637) do
+ActiveRecord::Schema.define(:version => 20130217143651) do
 
   create_table "ages", :force => true do |t|
     t.string   "code"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20130217001637) do
     t.string   "fax"
     t.string   "email"
     t.string   "link"
+    t.integer  "donor_transfers"
+    t.string   "donor_births"
+    t.string   "donor_rank"
     t.integer  "quality"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -73,13 +76,21 @@ ActiveRecord::Schema.define(:version => 20130217001637) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "stat_names", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "stats", :force => true do |t|
     t.integer  "clinic_id"
     t.integer  "age_id"
     t.integer  "egg_type_id"
+    t.integer  "stat_name_id"
     t.string   "value"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end
