@@ -32,9 +32,9 @@ task :import_clinics => :environment do
     Age.create! a
   end
 
-  #---import conditions---
-  conditions = {}
-  conditions_seeds = [
+  #---import complications---
+  complications = {}
+  complications_seeds = [
     {:code => 'TF', :name => 'Tubal Factor'},
     {:code => 'OD', :name => 'Ovulatory Dysfunction'},
     {:code => 'DOR', :name => 'Diminished Ovarian Reserve'},
@@ -45,23 +45,25 @@ task :import_clinics => :environment do
     {:code => 'FGD', :name => 'Familial Genetic Disease'}
   ]
 
-  conditions_seeds.each do |c|
-    condition = Condition.create! c
-    conditions[condition[:code]] = condition
+  complications_seeds.each do |c|
+    complication = Complication.create! c
+    complications[complication[:code]] = complication
   end
 
-  #---Link Conditions with Required Services---
+  #---Link Complications with Required Services---
   raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
-  #conditions['OD'].services << services['']
-  conditions['DOR'].services << services['DEGS']
-  conditions['DOR'].services << services['DEMS']
-  conditions['UF'].services << services['GS']
-  conditions['MF'].services << services['ICSI']
-  conditions['FGD'].services << services['PGD']
-  conditions['MFF'].services << services['ICSI']
+  #complications['OD'].services << services['']
+  complications['DOR'].services << services['DEGS']
+  complications['DOR'].services << services['DEMS']
+  complications['UF'].services << services['GS']
+  complications['MF'].services << services['ICSI']
+  complications['FGD'].services << services['PGD']
+  complications['MFF'].services << services['ICSI']
+  complications['TF'].services = services
+  complications['E'].services = services
 
-  conditions.each do |key, condition|
-    condition.save!
+  complications.each do |key, complication|
+    complication.save!
   end
 
    #---import clinics---
