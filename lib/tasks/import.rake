@@ -71,17 +71,17 @@ task :import => :environment do
     clinic = Clinic.create!({
         :clinic_id => row[:clinic_id],
         :name => row[:clinic_name],
-        :address => row[:address],
+        :address => row[:address] || 'n/a',
         :city => row[:city],
         :state => row[:state],
         :zip => row[:zip],
         :practice_director => row[:practice_director],
         :medical_director => row[:medical_director],
         :lab_director => row[:lab_director],
-        :phone => row[:phone],
+        :phone => row[:phone] || 'n/a',
         :fax => row[:fax],
-        :link => row[:link],
-        :email => row[:email]
+        :link => row[:link] || 'n/a',
+        :email => row[:email] || 'n/a'
       })
 
     clinics[row[:clinic_id]] = clinic
