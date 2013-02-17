@@ -1,21 +1,22 @@
 desc 'import_clinics'
 task :import_clinics => :environment do
   require 'csv'
-  require 'pp'
   #---import services---
+  services = {}
   services_seeds = [
-    {:code => 'donor_egg', :name => 'Donor Egg Services'},
-    {:code => 'gest_carrier', :name => 'Surrogate Services'},
-    {:code => 'donor_embryo', :name => 'Donor Embryo Services'},
-    {:code => 'cryopres', :name => 'Cryopreservation'},
-    {:code => 'single_women', :name => 'Services for Single Women'},
-    {:code => 'accred', :name => 'ACS Accredited Laboratory'},
-    {:code => 'icsi', :name => 'ICSI Services'},
-    {:code => 'pgd', :name => 'Preimplantation Genetic Diagnosis'}
+    {:code => 'DEGS', :name => 'Donor Egg Services'},
+    {:code => 'GS', :name => 'Gestational Surrogate'},
+    {:code => 'DEMS', :name => 'Donor Embryo Services'},
+    {:code => 'C', :name => 'Cryopreservation'},
+    {:code => 'SW', :name => 'Services for Single Women'},
+    {:code => 'AAL', :name => 'ACS Accredited Laboratory'},
+    {:code => 'IS', :name => 'ICSI Services'},
+    {:code => 'PGD', :name => 'Preimplantation Genetic Diagnosis'}
   ]
 
   services_seeds.each do |s|
-    Service.create s
+    service = Service.create! s
+    services[service[:code]] = service
   end
 
   #---import ages---
@@ -28,14 +29,46 @@ task :import_clinics => :environment do
   ]
 
   ages_seeds.each do |a|
-    Age.create a
+    Age.create! a
+  end
+
+  #---import conditions---
+  conditions = {}
+  conditions_seeds = [
+    {:code => 'TF', :name => 'Tubal Factor'},
+    {:code => 'OD', :name => 'Ovulatory Dysfunction'},
+    {:code => 'DOR', :name => 'Diminished Ovarian Reserve'},
+    {:code => 'E', :name => 'Endometriosis'},
+    {:code => 'UF', :name => 'Uterine Factor'},
+    {:code => 'MF', :name => 'Male Factor'},
+    {:code => 'MFF', :name => 'Male and Female Factor'},
+    {:code => 'FGD', :name => 'Familial Genetic Disease'}
+  ]
+
+  conditions_seeds.each do |c|
+    condition = Condition.create! c
+    conditions[condition[:code]] = condition
+  end
+
+  #---Link Conditions with Required Services---
+  raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
+  #conditions['OD'].services << services['']
+  conditions['DOR'].services << services['DEGS']
+  conditions['DOR'].services << services['DEMS']
+  conditions['UF'].services << services['GS']
+  conditions['MF'].services << services['ICSI']
+  conditions['FGD'].services << services['PGD']
+  conditions['MFF'].services << services['ICSI']
+
+  conditions.each do |key, condition|
+    condition.save!
   end
 
    #---import clinics---
-  clinics = Hash.new()
+  clinics = {}
   filename = File.join(Rails.root, 'db/seeds/clinics.csv')
   CSV.foreach(filename, :headers => true, :header_converters => :symbol) do |row|
-    clinic = Clinic.create({
+    clinic = Clinic.create!({
         :name => row[:clinic_name],
         :address => row[:address],
         :city => row[:city],
