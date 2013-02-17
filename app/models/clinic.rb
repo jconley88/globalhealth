@@ -1,4 +1,9 @@
 class Clinic < ActiveRecord::Base
-  attr_accessible :name, :address_1, :city, :state, :zip, :phone, :email
+  attr_accessible :name, :address, :city, :state, :zip, :practice_director, :medical_director, :lab_director, :phone, :fax, :link, :email, :donor_egg, :gest_carrier, :donor_embryo, :cryopres, :single_women, :accred, :icsi, :pgd, :quality
   has_and_belongs_to_many :services
+
+  def distance_in_miles
+    rand * 3000
+  end
+  alias_method :distance, :distance_in_miles
 end
