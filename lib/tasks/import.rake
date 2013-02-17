@@ -51,8 +51,6 @@ task :import => :environment do
   end
 
   #---Link Complications with Required Services---
-  #raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
-  #complications['OD'].services << services['']
   complications['dor'].services << services['degs']
   complications['dor'].services << services['dems']
   complications['uf'].services << services['gs']
