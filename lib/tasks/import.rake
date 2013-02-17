@@ -1,5 +1,5 @@
-desc 'import_clinics'
-task :import_clinics => :environment do
+desc 'import'
+task :import => :environment do
   require 'csv'
   #---import services---
   services = {}
@@ -51,16 +51,16 @@ task :import_clinics => :environment do
   end
 
   #---Link Complications with Required Services---
-  raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
+  #raise("OD requires assisted hatching, but this wasn't in our list of services that we know about")
   #complications['OD'].services << services['']
   complications['DOR'].services << services['DEGS']
   complications['DOR'].services << services['DEMS']
   complications['UF'].services << services['GS']
-  complications['MF'].services << services['ICSI']
+  complications['MF'].services << services['IS']
   complications['FGD'].services << services['PGD']
-  complications['MFF'].services << services['ICSI']
-  complications['TF'].services = services
-  complications['E'].services = services
+  complications['MFF'].services << services['IS']
+  complications['TF'].services = Service.all
+  complications['E'].services = Service.all
 
   complications.each do |key, complication|
     complication.save!
@@ -88,14 +88,14 @@ task :import_clinics => :environment do
     clinics[row[:clinic_id]] = clinic
 
     service_codes = [
-      :donor_egg,
-      :gest_carrier,
-      :donor_embryo,
-      :cryopres,
-      :single_women,
-      :accred,
-      :icsi,
-      :pgd
+      :DEGS,
+      :GS,
+      :DEMS,
+      :C,
+      :SW,
+      :AAL,
+      :IS,
+      :PGD
     ]
     service_codes.each do |code|
       if row[code].to_s == '1'

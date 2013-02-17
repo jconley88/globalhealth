@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20130217001637) do
   create_table "ages", :force => true do |t|
     t.string   "code"
     t.string   "name"
-    t.integer  "min_age"
-    t.integer  "max_age"
+    t.integer  "min"
+    t.integer  "max"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130217001637) do
     t.string   "fax"
     t.string   "email"
     t.string   "link"
+    t.integer  "quality"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

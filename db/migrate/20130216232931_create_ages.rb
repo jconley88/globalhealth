@@ -3,8 +3,8 @@ class CreateAges < ActiveRecord::Migration
     create_table :ages do |t|
       t.string :code
       t.string :name
-      t.integer :min_age
-      t.integer :max_age
+      t.integer :min
+      t.integer :max
       t.timestamps
     end
   end
