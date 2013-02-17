@@ -19,7 +19,6 @@ class CreateClinicsTable < ActiveRecord::Migration
       t.integer :donor_transfers
       t.string :donor_births
       t.string :donor_rank
-      t.integer :quality
       t.timestamps
     end
   end

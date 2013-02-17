@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20130217143651) do
     t.integer  "donor_transfers"
     t.string   "donor_births"
     t.string   "donor_rank"
-    t.integer  "quality"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

@@ -5,5 +5,13 @@ class Clinic < ActiveRecord::Base
   def distance_in_miles
     rand * 3000
   end
+
+  def quality=(stat)
+    @quality = stat
+  end
+
+  def quality
+    (@quality.to_f * 100).to_i
+  end
   alias_method :distance, :distance_in_miles
 end
