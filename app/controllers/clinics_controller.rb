@@ -4,7 +4,7 @@ class ClinicsController < ApplicationController
     set_clinics
 
     respond_to do |format|
-      format.json { render json: @clinics.as_json(:methods => [:distance, :quality]) }
+      format.json { render json: @clinics.as_json(:methods => [:distance, :quality, :price]) }
     end
   end
 
@@ -15,7 +15,7 @@ class ClinicsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @clinics.as_json(:methods => [:distance, :quality]) }
+      format.json { render json: @clinics.as_json(:methods => [:distance, :quality, :price]) }
     end
   end
 
