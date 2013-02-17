@@ -137,9 +137,9 @@ task :import => :environment do
     stats = ['totcycles', 'preg', 'birth', 'rank']
     clinic = Clinic.find_by_clinic_id(row['clinic_id'].to_i)
     clinic.update_attributes({
-                              :donor_transfers => row[36].to_i,
-                              :donor_births => row[37],
-                              :donor_rank => row[38]
+                              :donor_transfers => row[38].to_i,
+                              :donor_births => row[39],
+                              :donor_rank => row[40]
                              })
 
     ages.each do |age|
