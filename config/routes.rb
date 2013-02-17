@@ -1,7 +1,7 @@
 Globalhealth::Application.routes.draw do
   resources :clinics do
     collection do
-      get :search
+      post :search
     end
   end
 
